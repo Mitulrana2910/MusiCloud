@@ -81,10 +81,7 @@ The app will open at `http://localhost:8501`
 3. Add songs to your playlists
 
 ### Playlist Management
-1. Create playlists with names and descriptions
-2. Add songs from recommendations
-3. View and manage songs in each playlist
-4. Delete playlists when no longer needed
+New Feature is coming soon!
 
 ### Event Management
 1. Create music events with:
