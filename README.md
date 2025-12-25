@@ -71,7 +71,7 @@ This will generate:
 streamlit run app.py
 ```
 
-The app will open at `http://localhost:8501`
+The app will open at `https://17ppj2gk-8501.inc1.devtunnels.ms/`
 
 ## 🎯 Usage
 
