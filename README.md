@@ -1,133 +1,106 @@
-# 🎵 Musicloud
+# 🎵 Musicloud AI
 
-A Python-based music recommendation system using **Streamlit**, **Spotify API**, and **Machine Learning** (TF-IDF & Cosine Similarity).
+A modern, high-performance music recommendation engine featuring a **Glassmorphism UI**, real-time **Spotify Previews**, and an **AI-driven** recommendation system using TF-IDF and Cosine Similarity.
 
-## ✨ Features
+## ✨ New Features
 
-- **🎵 Music Recommendations**: Content-based filtering using TF-IDF and cosine similarity
-- **📝 Playlist Management**: Create, manage, and delete custom playlists (stored in JSON)
-- **🎫 Event Management**: Create music events with capacity limits, charges, and participant registration (stored in JSON)
-- **🎨 Album Covers**: Fetch album art using Spotify API (optional)
+- **💎 Glassmorphism UI**: A stunning, frosted-glass interface built with Tailwind CSS.
+- **🎧 Real-time Previews**: Listen to 30-second Spotify track previews directly in the browser.
+- **❤️ Liked Collection**: Save your favorite recommendations to a persistent "Liked Collection" (Playlist).
+- **🤖 AI Recommendations**: Content-based filtering analyzing song metadata to find your perfect vibe.
+- **📅 Event Management**: Full-stack system to create music events, manage capacity, and register participants.
 
 ## 📁 Project Structure
 
 ```
-├── app.py                      # Main Streamlit application
-├── data_cleaning.py            # Preprocesses CSV and generates pkl files
-├── spotify_millsongdata.csv    # Music dataset
-├── df.pkl                      # Processed dataframe (generated)
-├── similarity.pkl              # Similarity matrix (generated)
-├── playlists.json              # Playlist storage
-├── events.json                 # Event storage
-├── requirements.txt            # Python dependencies
-├── .env                        # Environment variables (create from .env.example)
-└── README.md                   # This file
+├── app.py                 # Flask Backend (API & Routes)
+├── data_cleaning.py       # ML Pipeline (TF-IDF & Similarity Generation)
+├── templates/
+│   └── index.html         # Frontend (Tailwind CSS & Vanilla JS)
+├── static/
+│   ├── favicon.ico        # App Icon
+│   └── music_icon.svg     # Custom Branding SVG
+├── df.pkl                 # Processed Dataframe
+├── similarity.pkl         # Cosine Similarity Matrix
+├── playlists.json         # Storage for Liked Songs
+├── events.json            # Storage for Event Data
+└── .env                   # RapidAPI Credentials
 ```
 
-## 🚀 Installation
+## 🚀 Installation & Setup
 
-### 1. Clone the repository
-
+### 1. Clone & Navigate
 ```bash
 git clone <your-repo-url>
-cd music-recommendation-system
+cd musicloud
 ```
 
-### 2. Install dependencies
-
+### 2. Install Dependencies
 ```bash
-pip install -r requirements.txt
+pip install flask pandas scikit-learn joblib nltk python-dotenv requests
 ```
 
-### 3. Set up environment variables (Optional - for album covers)
-
-Create a `.env` file in the project root:
-
+### 3. API Configuration
+Create a `.env` file in the root directory and add your **RapidAPI (Spotify23)** credentials:
 ```env
-SPOTIFY_CLIENT_ID=your_spotify_client_id
-SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+RAPIDAPI_KEY=your_key_here
+RAPIDAPI_HOST=rapid_api_link
 ```
 
-To get Spotify API credentials:
-1. Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
-2. Create a new app
-3. Copy Client ID and Client Secret
-
-### 4. Generate pickle files
-
-**IMPORTANT**: Before running the app, you must preprocess the data:
-
+### 4. Initialize the AI Model
+If you haven't generated the similarity matrices yet, run:
 ```bash
 python data_cleaning.py
 ```
 
-This will generate:
-- `df.pkl` - Cleaned and processed dataframe
-- `similarity.pkl` - Cosine similarity matrix for recommendations
-
-### 5. Run the application
-
+### 5. Launch the App
 ```bash
-streamlit run app.py
+python app.py
 ```
 
-The app will open at `https://17ppj2gk-8501.inc1.devtunnels.ms/`
 
-## 🎯 Usage
+## 🎯 How It Works
 
-### Music Recommendations
-1. Browse songs by genre or search by name/artist
-2. Select a song and click "Get Recommendations" to find similar songs
-3. Add songs to your playlists
-
-### Playlist Management
-New Feature is coming soon!
+### Music Discovery
+1. **Search**: Start typing a song name. The AI provides real-time autocomplete suggestions.
+2. **Recommend**: Click "Show Recommendation" to trigger the Cosine Similarity engine.
+3. **Preview**: Click the play button on any card to hear the track via the Spotify API.
+4. **Like**: Click the ❤️ icon to save a song to your "Liked Collection" tab.
 
 ### Event Management
-1. Create music events with:
-   - Event name
-   - Date
-   - Capacity
-   - Entry charges
-2. Register participants (auto-closes when capacity is full)
-3. View participant lists
-4. Delete events
+- Create events with specific dates, pricing, and capacity.
+- The system automatically handles "Full" status once capacity is reached.
+- All data persists in `events.json`.
 
-## 📊 Dataset
+## 🔧 Tech Stack
 
-The project uses `spotify_millsongdata.csv` containing:
-- Song names
-- Artist names
-- Genre/category (link column)
-- Lyrics/text features
+- **Backend**: Python / Flask
+- **Frontend**: HTML5 / Tailwind CSS / Google Material Symbols
+- **Machine Learning**: Scikit-learn (TF-IDF Vectorizer), Cosine Similarity
+- **Data Handling**: Pandas, JSON, Joblib
+- **APIs**: Spotify (via RapidAPI)
 
-## 🔧 Technologies Used
-
-- **Python 3.8+**
-- **Streamlit** - Web framework
-- **Pandas** - Data manipulation
-- **Scikit-learn** - TF-IDF & Cosine Similarity
-- **NLTK** - Text preprocessing
-- **Spotipy** - Spotify API integration
-- **Pickle/Joblib** - Model persistence
-
-## 📝 Data Storage
-
-- **Playlists**: Stored in `playlists.json`
-- **Events**: Stored in `events.json`
-- **Processed Data**: Stored in `df.pkl` and `similarity.pkl`
-
-  
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 🎉 Acknowledgments
 
-- Spotify Million Song Dataset
-- Streamlit community
-- Spotify Web API
+- Spotify Million Song Dataset for the core data.
+- The Glassmorphism design movement for UI inspiration.
+```
+
+### Key Changes Made to your README:
+1.  **Framework Update**: Changed references from **Streamlit** to **Flask**.
+2.  **UI Description**: Added **Glassmorphism** and **Tailwind CSS** to the tech stack.
+3.  **Feature Updates**: Added the **Like (Heart) Button** and **Quick Spotify Preview** features.
+4.  **API Update**: Reflected the use of **RapidAPI** instead of the standard Spotipy library.
+5.  **Installation**: Updated the run command to `python app.py` and included the template folder structure.
