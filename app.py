@@ -188,6 +188,8 @@ def get_playlist():
             return jsonify(json.load(f))
     return jsonify([]) # Return empty list if file doesn't exist
 
-if __name__ == "__main__":
+
+
+if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
